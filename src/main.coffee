@@ -27,11 +27,14 @@ module.exports =
 				method: "GET"
 				options:
 					val : val
+					policy : stored_policy
 		else
 			dataStringed = JSON.stringify val
 			info = 
 				data: dataStringed
 				method: "POST"
+				options:
+					policy : stored_policy
 				headers:
 					'Content-Type':'application/json'
 					'Content-Length': Buffer.byteLength(dataStringed, 'utf8')
