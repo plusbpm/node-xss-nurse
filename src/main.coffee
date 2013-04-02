@@ -22,9 +22,6 @@ module.exports =
 
 		isString = typeof val is "string"
 
-		info.options =
-			key : stored_key
-
 		if isString
 			info =
 				method: "GET"
@@ -38,7 +35,9 @@ module.exports =
 				headers:
 					'Content-Type':'application/json'
 					'Content-Length': Buffer.byteLength(dataStringed, 'utf8')
-					
+
+		info.headers['X-Nurse-Token'] = stored_key
+
 		sendRequest info, (err, r) ->
 			return cbk err, null if err?
 			if isString
